@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise
 
 const app = express();
 
@@ -18,17 +19,15 @@ app.use('/api', require('./api/routes/routes'));
 const PORT = process.env.PORT || 5000;
 
 const dbURI = 'mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.net/foodsharing?retryWrites=true&w=majority';
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(result => {
+        console.log('connected to db');
+    })
+    .catch(err => console.error(err));
 
-
-const url = 'mongodb://localhost/foodsharing';
-mongoose.connect(url, { useNewUrlParser: true });
-mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error...'));
-
-// mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-//     .then(result => {
-//         console.log('connected to db');
-//     })
-//     .catch(err => console.error(err));
+// const url = 'mongodb://localhost/foodsharing';
+// mongoose.connect(url, { useNewUrlParser: true });
+// mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error...'));
 
 app.listen(PORT, () => {
     console.log("App is running on port " + port);

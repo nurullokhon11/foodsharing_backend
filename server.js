@@ -19,7 +19,8 @@ const PORT = process.env.PORT || 5000;
 
 const dbURI = 'mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.net/foodsharing?retryWrites=true&w=majority';
 
-const url = 'mongodb://localhost/Foodsharing';
+
+const url = 'mongodb://localhost/foodsharing';
 mongoose.connect(url, { useNewUrlParser: true });
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error...'));
 

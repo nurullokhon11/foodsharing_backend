@@ -22,6 +22,9 @@ const dbURI = 'mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => {
         console.log('connected to db');
-        app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
     })
     .catch(err => console.error(err));
+
+app.listen(PORT, () => {
+    console.log("App is running on port " + port);
+});

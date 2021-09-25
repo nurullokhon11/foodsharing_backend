@@ -8,13 +8,8 @@ module.exports = {
     getUserInfo,
     login,
     getAllAdsByUserId,
-    addUserAd,
-    sayHi
+    addUserAd
 };
-
-async function sayHi(req, res) {
-    res.status(200).json({ message: "Hi" })
-}
 
 async function getUserInfo(req, res) {
     User.findById(req.query.userId, function(err, user) {

@@ -10,8 +10,8 @@ const foodControls = require('../controls/food_controls');
 const FoodType = require('../models/food_type')
 const foodTypeControls = require('../controls/food_type_controls');
 
-router.get('/', )
-    /* User */
+//router.get('/', )
+/* User */
 router.post('/createUser', userControls.create);
 router.post('/login', userControls.login);
 router.get('/getUserInfo', userControls.getUserInfo)

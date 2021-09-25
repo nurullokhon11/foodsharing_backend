@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
 
 app.use('/api', require('./api/routes/routes'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 const dbURI = 'mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.net/foodsharing?retryWrites=true&w=majority';
 

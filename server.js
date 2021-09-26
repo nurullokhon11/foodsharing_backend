@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 5000;
 
 //'mongodb://localhost/Foodsharing';
 const dbURI = 'mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.net/foodsharing?retryWrites=true&w=majority';
-mongoose.connect(process.env.MONGODB_URI || dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI || dbURI, { useNewUrlParser: true })
     .then(result => {
         console.log('connected to db');
     })

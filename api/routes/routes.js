@@ -53,9 +53,10 @@ router.post('/addUserAd', userControls.addUserAd)
 
 /* Food */
 router.post('/createFoodAd', foodControls.createFoodAd);
-router.get('/getFoodAds', foodControls.getFoodAds(Food), (req, res) => {
-    res.json(res.paginatedResults)
-})
+router.get('/getFoodAds', foodControls.getFoodAds);
+// router.get('/getFoodAds', foodControls.getFoodAds(Food), (req, res) => {
+//     res.json(res.paginatedResults)
+// })
 
 /* Food types */
 router.post('/createFoodType', foodTypeControls.createFoodType);

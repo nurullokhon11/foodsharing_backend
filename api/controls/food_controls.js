@@ -72,11 +72,11 @@ function getFoodAds(req, res) {
     //     }
     // }
     Food.find({}, function(err, food) {
-        console.log(req)
+        //console.log(req)
         if (err) {
             return res.status(400).json({
                 status: 'error',
-                error: 'Bad request!',
+                error: err,
             });
         } else {
             return res.status(200).json(food);

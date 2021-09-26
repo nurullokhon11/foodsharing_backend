@@ -87,6 +87,17 @@ function updateFoodAdByQuery(req, res) {
             return res.status(200).json({ message: "Successfully edited" });
         }
     });
+    // const updates = req.body;
+    // Food.findOneAndDelete(updates, function(err, food) {
+    //     console.log(food)
+    //     if (err) {
+    //         return res.status(404).json({
+    //             message: err,
+    //         });
+    //     } else {
+    //         return res.status(200).json({ message: "Successfully deleted" });
+    //     }
+    // });
 }
 
 function changeVisibilityFoodAdByQuery(req, res) {

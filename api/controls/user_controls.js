@@ -10,8 +10,47 @@ module.exports = {
     getAllAdsByUserId,
     addUserAd,
     updateUserInfo,
-    deleteUserAd
+    deleteUserAd,
+    deleteUserAdByQuery
 };
+
+function deleteUserAdByQuery(req, res) {
+    console.log(req.query.userId + " userId")
+    User.findById(req.query.userId, function(err, user) {
+        console.log("user " + user)
+        if (err) {
+            return res.status(404).json({
+                message: err,
+            });
+        } else {
+            var userFoodAds = user.foodAds
+            var results = []
+            for (var i = 0; i < userFoodAds.length; i++) {
+                if (userFoodAds[i].ownerId == req.body.ownerId &&
+                    userFoodAds[i].address == req.body.address &&
+                    userFoodAds[i].description == req.body.description &&
+                    userFoodAds[i].name == req.body.name) {
+                    continue
+                } else {
+                    results.push(userFoodAds[i])
+                }
+            }
+            user.foodAds = results
+            user.save(function(err) {
+                if (err) {
+                    res.send(err);
+                    return res.status(404).json({
+                        message: err,
+                    });
+                } else {
+                    return res.status(200).json({
+                        message: 'Food ad removed',
+                    });
+                }
+            });
+        }
+    });
+}
 
 function updateUserInfo(req, res) {
     const id = req.query.id;

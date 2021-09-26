@@ -52,6 +52,7 @@ router.get('/getUserFoodAds', userControls.getAllAdsByUserId);
 router.post('/addUserAd', userControls.addUserAd);
 router.post('/updateUserInfo', userControls.updateUserInfo);
 router.post('/deleteUserAd', userControls.deleteUserAd);
+router.post('/deleteUserAdByQuery', userControls.deleteUserAdByQuery);
 
 /* Food */
 router.post('/createFoodAd', foodControls.createFoodAd);

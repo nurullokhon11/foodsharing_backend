@@ -98,7 +98,7 @@ function changeVisibilityFoodAdByQuery(req, res) {
                 message: err,
             });
         } else {
-            return res.status(200).json({ message: "Successfully edited" });
+            return res.status(200).json({ message: "Successfully changed" });
         }
     });
 }

@@ -58,7 +58,7 @@ router.post('/createFoodAd', foodControls.createFoodAd);
 router.get('/getFoodAds', foodControls.getFoodAds);
 router.post('/reserveFoodAd', foodControls.reserveFoodAd);
 router.post('/updateFoodAdByQuery', foodControls.updateFoodAdByQuery);
-router.post('/changeVisibilityFoodAdByQuery', foodControls.updateFoodAdByQuery);
+router.post('/changeVisibilityFoodAdByQuery', foodControls.changeVisibilityFoodAdByQuery);
 // router.get('/getFoodAds', foodControls.getFoodAds(Food), (req, res) => {
 //     res.json(res.paginatedResults)
 // })

@@ -18,7 +18,8 @@ app.use('/api', require('./api/routes/routes'));
 
 const PORT = process.env.PORT || 5000;
 
-const dbURI = 'mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.net/foodsharing?retryWrites=true&w=majority';
+'mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.net/foodsharing?retryWrites=true&w=majority';
+const dbURI = 'mongodb://localhost/Foodsharing';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => {
         console.log('connected to db');

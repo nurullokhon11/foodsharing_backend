@@ -8,8 +8,26 @@ module.exports = {
     getUserInfo,
     login,
     getAllAdsByUserId,
-    addUserAd
+    addUserAd,
+    updateUserInfo,
+    deleteUserAd
 };
+
+function updateUserInfo(req, res) {
+    const id = req.query.id;
+    const updates = req.body;
+    const options = { new: true };
+    User.findByIdAndUpdate(id, updates, options,
+        function(err, user) {
+            if (err) {
+                return res.status(404).json({
+                    message: err,
+                });
+            } else {
+                return res.status(200).json(user);
+            }
+        });
+}
 
 function getUserInfo(req, res) {
     User.findById(req.query.userId, function(err, user) {
@@ -87,9 +105,15 @@ function getAllAdsByUserId(req, res) {
                 message: err,
             });
         } else {
-            console.log(user.username)
             try {
-                return res.status(200).json(user.foodAds);
+                var foods = user.foodAds
+                var result = []
+                for (var i = 0; i < foods.length; i++) {
+                    if (foods[i].visibility == 1) {
+                        result.push(foods[i])
+                    }
+                }
+                return res.status(200).json(result);
             } catch (e) {
                 return res.status(404).json({
                     foodAds: [],
@@ -100,15 +124,46 @@ function getAllAdsByUserId(req, res) {
     });
 };
 
-function addUserAd(req, res) {
-    User.findById(req.body.userId, function(err, data) {
+function deleteUserAd(req, res) {
+    User.findById(req.query.userId, function(err, data) {
         if (err || typeof data == 'undefined') {
-            return res.status(400).json({
+            return res.status(500).json({
+                error: 'Bad request',
+            });
+        } else {
+            var ads = data.foodAds
+            var results = []
+            for (var i = 0; i < ads.length; i++) {
+                if (ads[i]._id != req.query.adId) {
+                    results.push(ads[i])
+                }
+            }
+            data.foodAds = results
+            data.save(function(err) {
+                if (err) {
+                    res.send(err);
+                    return res.status(404).json({
+                        message: err,
+                    });
+                } else {
+                    return res.status(200).json({
+                        message: 'Food ad removed',
+                    });
+                }
+            });
+        }
+    });
+}
+
+function addUserAd(req, res) {
+    User.findById(req.query.userId, function(err, data) {
+        if (err || typeof data == 'undefined') {
+            return res.status(500).json({
                 error: 'Bad request',
             });
         } else {
             var foodAd = new Food();
-            foodAd = req.body;
+            foodAd = req.body
             data.foodAds.push(foodAd);
             data.save(function(err) {
                 if (err) {

@@ -47,13 +47,18 @@ const foodTypeControls = require('../controls/food_type_controls');
 /* User */
 router.post('/createUser', userControls.create);
 router.post('/login', userControls.login);
-router.get('/getUserInfo', userControls.getUserInfo)
-router.get('/getUserFoodAds', userControls.getAllAdsByUserId)
-router.post('/addUserAd', userControls.addUserAd)
+router.get('/getUserInfo', userControls.getUserInfo);
+router.get('/getUserFoodAds', userControls.getAllAdsByUserId);
+router.post('/addUserAd', userControls.addUserAd);
+router.post('/updateUserInfo', userControls.updateUserInfo);
+router.post('/deleteUserAd', userControls.deleteUserAd);
 
 /* Food */
 router.post('/createFoodAd', foodControls.createFoodAd);
 router.get('/getFoodAds', foodControls.getFoodAds);
+router.post('/reserveFoodAd', foodControls.reserveFoodAd);
+router.post('/updateFoodAdByQuery', foodControls.updateFoodAdByQuery);
+router.post('/changeVisibilityFoodAdByQuery', foodControls.updateFoodAdByQuery);
 // router.get('/getFoodAds', foodControls.getFoodAds(Food), (req, res) => {
 //     res.json(res.paginatedResults)
 // })

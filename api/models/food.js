@@ -6,6 +6,10 @@ const foodSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true,
     },
+    ownerName: {
+        type: String,
+        required: true,
+    },
     name: {
         type: String,
         required: true,
@@ -48,6 +52,14 @@ const foodSchema = new Schema({
     },
     reserved: {
         type: Boolean,
+        required: false
+    },
+    visibility: {
+        type: Number,
+        required: false
+    },
+    origId: {
+        type: String,
         required: false
     }
 });

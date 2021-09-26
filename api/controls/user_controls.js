@@ -11,7 +11,7 @@ module.exports = {
     addUserAd
 };
 
-async function getUserInfo(req, res) {
+function getUserInfo(req, res) {
     User.findById(req.query.userId, function(err, user) {
         if (err) {
             return res.status(404).json({
@@ -29,23 +29,34 @@ async function getUserInfo(req, res) {
     });
 }
 
-async function create(req, res) {
-    if (await User.findOne({ email: req.body.email })) {
-        return res.status(500).json({ message: "User already exist" })
-    }
-    const user = new User({
-        username: req.body.username,
-        email: req.body.email,
-        phone: req.body.phone,
-        password: req.body.password
+function create(req, res) {
+    User.findOne({ email: req.body.email }, function(err, user) {
+        if (err) {
+            return res.status(500)
+                .json({ message: "User already exist" })
+        } else {
+            const user = new User({
+                username: req.body.username,
+                email: req.body.email,
+                phone: req.body.phone,
+                password: req.body.password
+            });
+            user.save(function(err) {
+                if (err) {
+                    return res.status(400).json({
+                        status: 'error',
+                        error: 'Bad request!',
+                    });
+                } else {
+                    return res.status(200).json({ message: 'User created' });
+                }
+            });
+        }
     });
-
-    if (await user.save()) {
-        return res.status(200).json({ message: "User created" })
-    }
 }
 
-async function login(req, res) {
+
+function login(req, res) {
     console.log(req.body.email)
     query = (req.body.email) ? { email: req.body.email } : {};
     User.findOne(query, function(err, user) {

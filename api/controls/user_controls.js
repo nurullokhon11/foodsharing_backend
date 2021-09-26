@@ -31,7 +31,7 @@ async function getUserInfo(req, res) {
 
 async function create(req, res) {
     if (await User.findOne({ email: req.body.email })) {
-        res.status(500).json({ message: "User already exist" })
+        return res.status(500).json({ message: "User already exist" })
     }
     const user = new User({
         username: req.body.username,
@@ -41,7 +41,7 @@ async function create(req, res) {
     });
 
     if (await user.save()) {
-        res.status(200).json({ message: "User created" })
+        return res.status(200).json({ message: "User created" })
     }
 }
 
@@ -67,21 +67,6 @@ async function login(req, res) {
             }
         }
     });
-
-    // var user = await User.findOne({ email: req.body.email });
-    // if (user) {
-    //     if (req.body.password == user.password) {
-    //         res.json({
-    //             username: user.username,
-    //             email: user.email,
-    //             phone: user.phone,
-    //             nickname: user.nickname,
-    //             id: user._id
-    //         })
-    //     } else {
-    //         res.status(404).json({ message: "Not found" })
-    //     }
-    // }
 }
 
 function getAllAdsByUserId(req, res) {

@@ -19,17 +19,21 @@ app.use('/api', require('./api/routes/routes'));
 const PORT = process.env.PORT || 5000;
 
 //'mongodb://localhost/Foodsharing';
-const dbURI = 'mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.net/foodsharing?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE';
-mongoose.connect(process.env.MONGODB_URI || dbURI, { useNewUrlParser: true })
-    .then(result => {
-        console.log('connected to db');
-    })
-    .catch(err => console.error(err));
+// const dbURI = 'mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.net/foodsharing?retryWrites=true&w=majority';
+// mongoose.connect(process.env.MONGODB_URI || dbURI, { useNewUrlParser: true })
+//     .then(result => {
+//         console.log('connected to db');
+//     })
+//     .catch(err => console.error(err));
+
+const url = 'mongodb://localhost/Todosdb';
+mongoose.connect('mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.net/foodsharing?retryWrites=true&w=majority' ||
+    process.env.MONGODB_URI, { useNewUrlParser: true });
+mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error...'));
 
 app.listen(PORT, () => {
     console.log("App is running on port " + PORT);
 });
-
 
 // var express = require('express'),
 //     app = express(),

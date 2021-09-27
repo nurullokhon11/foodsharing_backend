@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 5000;
 //     .catch(err => console.error(err));
 
 //const url = process.env.MONGODB_URI || 'mongodb+srv://jenyasubbotina:ht3wmfCWlXrHNGik@food.dqcji.mongodb.net/foodsharing?retryWrites=true&w=majority?authSource=admin';
-const url = 'mongodb://localhost/Foodsharingdb';
+const url = process.env.MONGODB_URI || 'mongodb://localhost/Foodsharingdb';
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error...'));
 
